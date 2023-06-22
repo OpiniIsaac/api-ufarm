@@ -4,7 +4,7 @@
   1. git clone
   2. npm install
   3. Config the my sql server
-     -change the password to your my sql server
+     - change the password to your my sql server
   ## using the api 
 
    how to use it 
