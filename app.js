@@ -18,8 +18,8 @@ async function initializeDatabase() {
     const connection = await mysql.createConnection(connectionConfig);
 
     // Create the database if it doesn't exist
-    await connection.query('CREATE DATABASE IF NOT EXISTS UfarmApi123');
-    await connection.query('USE UfarmApi123');
+    await connection.query('CREATE DATABASE IF NOT EXISTS UfarmApi');
+    await connection.query('USE UfarmApi');
 
     // Create the table if it doesn't exist
     await connection.query(`CREATE TABLE IF NOT EXISTS farmerOne (

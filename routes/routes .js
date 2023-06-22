@@ -10,7 +10,7 @@ const connectionConfig = {
     host: 'localhost',
     user: 'root',
     password: 'new_password',
-    database: 'UfarmApi123'
+    database: 'UfarmApi'
   };
 
 //creating farmer one 
