@@ -21,7 +21,7 @@
 
         } `
 
-    3. update http://localhost:3001/api/ufarm/farmerOne/1
+    3. put (update) http://localhost:3001/api/ufarm/farmerOne/1
 
     `
     {
