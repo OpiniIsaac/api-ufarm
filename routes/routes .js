@@ -5,20 +5,21 @@ const router = express.Router();
 const mysql = require("mysql");
 
 
-// Create a record
+// Create a database
 const connectionConfig = {
     host: 'localhost',
     user: 'root',
     password: 'new_password',
-    database: 'qwerty'
+    database: 'UfarmApi123'
   };
 
-router.post("/", async (req, res) => {
+//creating farmer one 
+router.post("/farmerOne", async (req, res) => {
   try {
     const { name, ward,gender } = req.body;
     const connection = await mysql.createConnection(connectionConfig);
 
-    const createQuery = "INSERT INTO farmerOne (name, ward,gender) VALUES (?, ?.?)";
+    const createQuery = "INSERT INTO farmerOne (name, ward,gender) VALUES (?, ?,?)";
     await connection.query(createQuery, [name, ward,gender]);
 
     connection.end();
@@ -30,8 +31,8 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Get all records
-router.get("/",async (req, res) => {
+// Get all farmer one
+router.get("/farmerOne/",async (req, res) => {
   try {
     const connection = mysql.createConnection(connectionConfig);
 
@@ -55,8 +56,8 @@ router.get("/",async (req, res) => {
 }
 
 );
-// Update
-router.put("/:id", async (req, res) => {
+// Update farmer one
+router.put("/farmerOne/:id", async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
 
@@ -82,8 +83,8 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// Delete
-router.delete("/:id", async (req, res) => {
+// Delete farmer one  
+router.delete("/farmerOne/:id", async (req, res) => {
   const { id } = req.params;
 
   try {

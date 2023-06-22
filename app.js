@@ -18,25 +18,19 @@ async function initializeDatabase() {
     const connection = await mysql.createConnection(connectionConfig);
 
     // Create the database if it doesn't exist
-    await connection.query('CREATE DATABASE IF NOT EXISTS UfarmApi');
-    await connection.query('USE qwerty1234');
+    await connection.query('CREATE DATABASE IF NOT EXISTS UfarmApi123');
+    await connection.query('USE UfarmApi123');
 
     // Create the table if it doesn't exist
     await connection.query(`CREATE TABLE IF NOT EXISTS farmerOne (
       id INT AUTO_INCREMENT,
       name VARCHAR(100),
       ward VARCHAR(100),
-      gender VARCHAR(100)
+      gender VARCHAR(100),
       PRIMARY KEY (id)
     )`);
 
-    await connection.query(`CREATE TABLE IF NOT EXISTS urbanFarmer (
-        id INT AUTO_INCREMENT,
-        name VARCHAR(100),
-        ward VARCHAR(100),
-        gender VARCHAR(100)
-        PRIMARY KEY (id)
-      )`);
+  
 
     console.log('Database and table created.');
 
