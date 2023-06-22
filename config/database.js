@@ -6,6 +6,6 @@ const connectionConfig = {
   host: 'localhost',
   user: 'root',
   password: 'new_password',
-  database: 'testsql'
+  database: 'qwerty'
 };
 module.exports = connectionConfig;

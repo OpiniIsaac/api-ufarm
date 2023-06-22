@@ -3,23 +3,30 @@
 const express = require("express");
 const router = express.Router();
 const mysql = require("mysql");
-const connectionConfig = require("../config/database");
+
 
 // Create a record
+const connectionConfig = {
+    host: 'localhost',
+    user: 'root',
+    password: 'new_password',
+    database: 'qwerty'
+  };
+
 router.post("/", async (req, res) => {
   try {
-    const { name, title } = req.body;
+    const { name, ward,gender } = req.body;
     const connection = await mysql.createConnection(connectionConfig);
 
-    const createQuery = "INSERT INTO employee (name, title) VALUES (?, ?)";
-    await connection.query(createQuery, [name, title]);
+    const createQuery = "INSERT INTO farmerOne (name, ward,gender) VALUES (?, ?.?)";
+    await connection.query(createQuery, [name, ward,gender]);
 
     connection.end();
 
-    return res.status(200).json({ message: "Record created" });
+    return res.status(200).json({ message: "Farmer One Registered" });
   } catch (error) {
-    console.error("Error creating record:", error);
-    return res.status(500).json({ error: "Failed to create record" });
+    console.error("Error creating Farmer One:", error);
+    return res.status(500).json({ error: "Failed to create Farmer One" });
   }
 });
 
@@ -30,11 +37,11 @@ router.get("/",async (req, res) => {
 
     connection.connect();
 
-    const readQuery = "SELECT * FROM employee";
+    const readQuery = "SELECT * FROM farmerOne";
     connection.query(readQuery, (error, results) => {
       if (error) {
-        console.error("Error reading records:", error);
-        return res.status(500).json({ error: "Failed to fetch records" });
+        console.error("Error reading Farmer One:", error);
+        return res.status(500).json({ error: "Failed to fetch Farmer One records" });
       }
 
       connection.end();
@@ -51,23 +58,23 @@ router.get("/",async (req, res) => {
 // Update
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { title } = req.body;
+  const { name } = req.body;
 
   try {
     const connection = mysql.createConnection(connectionConfig);
 
     connection.connect();
 
-    const updateQuery = "UPDATE employee SET title = ? WHERE id = ?";
-    connection.query(updateQuery, [title, id], (error, result) => {
+    const updateQuery = "UPDATE farmerOne SET name = ? WHERE id = ?";
+    connection.query(updateQuery, [name, id], (error, result) => {
       if (error) {
-        console.error("Error updating record:", error);
-        return res.status(500).json({ error: "Failed to update record" });
+        console.error("Error updating farmer one:", error);
+        return res.status(500).json({ error: "Failed to update farmer One" });
       }
 
       connection.end();
 
-      return res.status(200).json({ message: "Record updated" });
+      return res.status(200).json({ message: "farmer One updated" });
     });
   } catch (error) {
     console.error("Error connecting to database:", error);
@@ -84,21 +91,23 @@ router.delete("/:id", async (req, res) => {
 
     connection.connect();
 
-    const deleteQuery = "DELETE FROM employee WHERE id = ?";
+    const deleteQuery = "DELETE FROM farmerOne WHERE id = ?";
     connection.query(deleteQuery, id, (error, result) => {
       if (error) {
         console.error("Error deleting record:", error);
-        return res.status(500).json({ error: "Failed to delete record" });
+        return res.status(500).json({ error: "Failed to delete farmer One" });
       }
 
       connection.end();
 
-      return res.status(200).json({ message: "Record deleted" });
+      return res.status(200).json({ message: "farmer One deleted" });
     });
   } catch (error) {
     console.error("Error connecting to database:", error);
     return res.status(500).json({ error: "Failed to connect to database" });
   }
 });
+
+
 
 module.exports = router;
